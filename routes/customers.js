@@ -46,7 +46,8 @@ function doPsot(req, res, next) {
 
 
             }else {
-                var objOustomer = {id: param.id, name: param.name, email: param.email, phone: param.phone};
+                var objOustomer = JSON.parse(param.obj);
+                objOustomer.id = parseInt(objOustomer.id);
                 if (incomingAction == "update") {
                     objDB.updateCustomer(objOustomer, res)
                 } else if (incomingAction == "add") {
