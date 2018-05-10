@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
     var flag= "false";
     console.log(dTime._created);
     console.log(toDay._created);
+    res.setHeader('Content-Type', 'application/json');
     if(dformatted <= tformatted){
         return res.json({check: "false"});
     }else{
