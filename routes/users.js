@@ -9,9 +9,9 @@ router.get('/', function(req, res, next) {
     var param = url.parse(req.url, true).query;
     var incomingAction = param.incomingAction;
 
-    var dTime = datetime.create(param.tDate);
+    var dTime = datetime.create(param.delDate + " " + param.delTime);
     var dformatted = dTime.format('m/d/Y H:M:S');
-    var toDay = datetime.create(param.tToday);
+    var toDay = datetime.create(param.todayDate + " " + param.todayTime);
     var tformatted = toDay.format('m/d/Y H:M:S');
     var flag= "false";
     console.log(dTime._created);
