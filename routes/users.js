@@ -8,10 +8,10 @@ var datetime = require('node-datetime')
 router.get('/', function(req, res, next) {
     var param = url.parse(req.url, true).query;
     var incomingAction = param.incomingAction;
-    var dateObj = JSON.parse(param.obj);
-    var dTime = datetime.create(dateObj.tDate);
+
+    var dTime = datetime.create(param.tDate);
     var dformatted = dTime.format('m/d/Y H:M:S');
-    var toDay = datetime.create(dateObj.tToday);
+    var toDay = datetime.create(param.tToday);
     var tformatted = toDay.format('m/d/Y H:M:S');
     var flag= "false";
     console.log(dTime._created);
