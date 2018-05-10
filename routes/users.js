@@ -17,9 +17,9 @@ router.get('/', function(req, res, next) {
     console.log(dTime._created);
     console.log(toDay._created);
     if(dformatted <= tformatted){
-        res.send({check: "false"});
+        return res.json({check: "false"});
     }else{
-        res.send({check: "true"});
+        return res.json({check: "true"});
     }
   res.send('{check:}');
 });
