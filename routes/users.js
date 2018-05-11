@@ -17,7 +17,9 @@ router.get('/', function(req, res, next) {
     console.log(dTime._created);
     console.log(toDay._created);
     res.setHeader('Content-Type', 'application/json');
-    if(dformatted >= tformatted){
+    if(dformatted == tformatted){
+        return res.json({check: "equal"});
+    }else if(dformatted > tformatted){
         return res.json({check: "false"});
     }else{
         return res.json({check: "true"});
