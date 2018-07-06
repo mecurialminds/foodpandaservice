@@ -6,6 +6,7 @@ const dbConnectionString = "mongodb://bot:bot@ds014648.mlab.com:14648/foodpandab
 const dbName = "foodpandabot";
 const customersCollection = "customers";
 const orderCollection = "orders";
+const billCollection = "bills";
 
 function getNextSequenceValue(sequenceName) {
     MongoClient.connect(dbConnectionString, function (err, db) {
@@ -230,4 +231,34 @@ module.exports.getOrder = function getOrder(oid, cid, response) {
         }
     });
 }
+
+//---------------------------------------------------------------Bill----------------------------------------------------
+module.exports.getBill = function getBill (payee,response) {
+    MongoClient.connect(dbConnectionString, function (err, db) {
+        try {
+            if (err) throw err;
+            var dbo = db.db(dbName);
+            query = {};
+            if(payee != null && payee != undefined){
+                query = {'bill.payee': payee};
+            }
+            dbo.collection(billCollection).find(query).toArray(function (err, result) {
+                if (err) throw err;
+
+                if (result != null) {
+                    response.send(result);
+                }
+                else {
+                    response.send({err:'No result found'});
+                }
+
+
+            });
+
+        } catch (e) {
+            db.close();
+        }
+    });
+}
+
 
